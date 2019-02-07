@@ -1,8 +1,6 @@
 #include <iostream>
 #include <memory>
-#include <cstdlib>
 #include <string>
-#include <vector>
 
 const unsigned int nHashTableSize = 100;
 
