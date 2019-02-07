@@ -1,4 +1,4 @@
-// Finding any peak in an array, where an element is greater than or equal to any elements surrounding it
+// Finding any peak in an array, in a both efficient & inefficient way, where an element is greater than or equal to any elements surrounding it
 // Based on this MIT lecture: https://youtu.be/HtSuA80QTyo
 
 #include <iostream>
