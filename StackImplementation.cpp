@@ -22,8 +22,7 @@ public:
 };
 
 
-int _main() { return 0;
-//int main() {
+int main() {
 	std::unique_ptr<Stack> S(new Stack());
 	char cChoice;
 	int  nInput;
@@ -50,7 +49,7 @@ int _main() { return 0;
 			S->Print();
 			break;
 		case '2':
-			std::cout << "      Enter value:";
+			std::cout << "      Enter value: ";
 			std::cin >> nInput;
 			std::cin.ignore(1000, 10);
 			S->Insert(nInput);
