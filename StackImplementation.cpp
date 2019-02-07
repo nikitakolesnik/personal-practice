@@ -68,8 +68,6 @@ int main() {
 			break;
 		}
 	}
-
-	//std::cin.get();
 }
 
 
