@@ -22,10 +22,21 @@ __int16 peakLinear(__int16 arr[10]) {
 __int16 peakLog(__int16 arr[], __int16 start, __int16 end) {
 	__int16 half = (start + end + 1) / 2;                                                                                                  // Look at the middle of the range
 	
-	if      ((half == start && arr[start] >= arr[start+1]) || (half==end && arr[half] >= arr[half-1])) return half;                        // if it's on a boundary and bigger,       return it
-	else if ((arr[half] >= arr[half-1]) && (arr[half] >= arr[half+1]))                                 return half;                        // if middle is bigger than L & R,         return it
-	else if (arr[half] <= arr[half-1])                                                                 return peakLog(arr, start, half-1); // if middle is smaller or equal to left,  look left
-	else                                                                                               return peakLog(arr, half+1, end);   // if middle is smaller or equal to right, look right
+	// if it's on a boundary and bigger, return it
+	if ((half == start && arr[start] >= arr[start+1]) || (half==end && arr[half] >= arr[half-1])) 
+		return half;                        
+	
+	// if middle is bigger than L & R, return it
+	else if ((arr[half] >= arr[half-1]) && (arr[half] >= arr[half+1]))
+		return half;                        
+	
+	// if middle is smaller or equal to left, look left
+	else if (arr[half] <= arr[half-1]) 
+		return peakLog(arr, start, half-1); 
+	
+	// if middle is smaller or equal to right, look right
+	else 
+		return peakLog(arr, half+1, end);   
 }
 
 int main() {
@@ -35,11 +46,11 @@ int main() {
 	__int16 jagged[10]    = { 1,2,1,2,1,2,1,2,1,2 };
 	__int16 even[10]      = { 1,1,1,1,1,1,1,1,1,1 };
 
-	std::cout << "For peak-left   list {" << listString(peakLeft)  << "}, peak is at position: "  << peakLinear(peakLeft)  << "|" << peakLog(peakLeft, 0, 9)  << "\r\n"
-		      << "For peak-center list {" << listString(peakMid)   << "}, peak is at position: "  << peakLinear(peakMid)   << "|" << peakLog(peakMid, 0, 9)   << "\r\n"
-		      << "For peak-right  list {" << listString(peakRight) << "}, peak is at position: "  << peakLinear(peakRight) << "|" << peakLog(peakRight, 0, 9) << "\r\n"
-		  	  << "For jagged      list {" << listString(jagged)    << "},  peak is at position: " << peakLinear(jagged)    << "|" << peakLog(jagged, 0, 9)    << "\r\n"
-			  << "For even        list {" << listString(even)      << "},  peak is at position: " << peakLinear(even)      << "|" << peakLog(even, 0, 9)      << "\r\n";
+	std::cout << "For peak-left   list {" << listString(peakLeft)  << "}, peak is at position: " << peakLinear(peakLeft)  << "|" << peakLog(peakLeft, 0, 9)  << "\r\n"
+		  << "For peak-center list {" << listString(peakMid)   << "}, peak is at position: " << peakLinear(peakMid)   << "|" << peakLog(peakMid, 0, 9)   << "\r\n"
+		  << "For peak-right  list {" << listString(peakRight) << "}, peak is at position: " << peakLinear(peakRight) << "|" << peakLog(peakRight, 0, 9) << "\r\n"
+		  << "For jagged      list {" << listString(jagged)    << "}, peak is at position: " << peakLinear(jagged)    << "|" << peakLog(jagged, 0, 9)    << "\r\n"
+		  << "For even        list {" << listString(even)      << "}, peak is at position: " << peakLinear(even)      << "|" << peakLog(even, 0, 9)      << "\r\n";
 
 	std::cin.get();
 }
