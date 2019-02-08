@@ -90,7 +90,7 @@ void Queue::Insert(std::string s)
 		return;
 	}
 
-	if (ptrHead == nullptr) // If list is empty
+	if (ptrHead == nullptr) // Check if this is the new head
 		ptrHead = ptrNode;
 	else
 		ptrTail->ptrNext = ptrNode;
