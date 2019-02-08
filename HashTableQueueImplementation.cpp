@@ -10,8 +10,7 @@ struct Node
 {
 	std::string sValue;
 	Node *ptrNext;
-	Node() { sValue = ""; ptrNext = nullptr; }
-	Node(std::string s) { sValue = s; ptrNext = nullptr; }
+	Node(std::string s = "") { sValue = s; ptrNext = nullptr; }
 };
 
 class Queue
@@ -44,18 +43,18 @@ int main() {
 
 		switch (cChoice)
 		{
-		case '1':
+		case '1': // Print
 			for (int i = 0; i < nHashTableSize; i++)
 			{
 				std::cout << "[" << i << "] ";
 				HashTable[i].Print();
 			}
 			break;
-		case '2':
+		case '2': // Insert
+			std::cin.ignore();
 			std::cout << "      Enter value: ";
-			std::cin >> sInput;
-			std::cin.ignore(1000, 10);
-			HashTable[hash(sInput)].Insert(sInput);
+			std::getline(std::cin, sInput);
+			HashTable[hash(sInput)].Insert(sInput); // Insert the input at array index of hash result
 			break;
 		case 'Q': case 'q':
 			bRepeat = false;
@@ -70,11 +69,12 @@ int main() {
 
 int hash(std::string s)
 {
+	// Total of the ASCII values, mod by size
 	int nTotal = 0;
 
 	for (unsigned short i = 0; i < s.length(); i++)
 		nTotal += s[i];
-
+	
 	return nTotal % nHashTableSize;
 }
 
@@ -84,12 +84,13 @@ void Queue::Insert(std::string s)
 
 	Node *ptrNode = new Node(s);
 
-	if (!ptrNode) {
+	if (!ptrNode) // If memory allocation failed
+	{ 
 		std::cout << "No memory available.\r\n";
 		return;
 	}
 
-	if (ptrHead == nullptr)
+	if (ptrHead == nullptr) // If list is empty
 		ptrHead = ptrNode;
 	else
 		ptrTail->ptrNext = ptrNode;
@@ -101,9 +102,11 @@ void Queue::Print()
 {
 	if (ptrHead != nullptr)
 	{
-		Node* trav = ptrHead;
+		Node *trav = ptrHead;
 
-		while (trav) {
+		// Traverse through the list, printing each item inside of square brackets
+		while (trav) 
+		{
 			std::cout << '[' << trav->sValue << ']';
 
 			if (trav->ptrNext)
