@@ -128,8 +128,8 @@ void Queue::Clear()
 
 		if (ptrHead == ptrTail)
 		{
-			delete ptrHead, ptrTail;
-			ptrHead = ptrTail = 0;
+			delete ptrHead;
+			delete ptrTail;
 		}
 		else
 		{
