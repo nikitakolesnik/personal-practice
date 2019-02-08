@@ -92,9 +92,12 @@ void Queue::Insert(int n)
 
 void Queue::Delete() 
 {
-	if (!ptrHead)                                      // If the list is empty
+	// If the list is empty
+	if (!ptrHead) 
 		std::cout << "Deleting nothing; list is empty\r\n";
-	else if (ptrHead == ptrTail && ptrHead != nullptr) // If the list has one item
+	
+	// If the list has one item
+	else if (ptrHead == ptrTail && ptrHead != nullptr) 
 	{
 		std::cout << "Deleting " << ptrTail->nValue << ", list is now empty\r\n";
 
@@ -102,17 +105,20 @@ void Queue::Delete()
 		delete ptrTail;
 		ptrHead = ptrTail = 0;
 	}
-	else                                               // List has two or more items
+	
+	// List has two or more items
+	else 
 	{
 		std::cout << "Deleting " << ptrTail->nValue;
 		
 		Node *ptrTrav = ptrHead;
 		
-		while (ptrTrav->ptrNext != ptrTail) // Find the second-to-last node
+		// Find the second-to-last node
+		while (ptrTrav->ptrNext != ptrTail) 
 			ptrTrav = ptrTrav->ptrNext;
 		
-		delete ptrTail; // Delete tail
-		ptrTail = ptrTrav; // Set new tail to traverse
+		delete ptrTail;
+		ptrTail = ptrTrav;
 		ptrTail->ptrNext = 0;
 
 		std::cout << ", new tail is " << ptrTail->nValue << "\r\n";
