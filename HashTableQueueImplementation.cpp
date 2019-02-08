@@ -50,15 +50,18 @@ int main() {
 				HashTable[i].Print();
 			}
 			break;
+		
 		case '2': // Insert
 			std::cin.ignore();
 			std::cout << "      Enter value: ";
 			std::getline(std::cin, sInput);
 			HashTable[hash(sInput)].Insert(sInput); // Insert the input at array index of hash result
 			break;
+		
 		case 'Q': case 'q':
 			bRepeat = false;
 			break;
+		
 		default:
 			std::cout << "Invalid input\r\n";
 			break;
