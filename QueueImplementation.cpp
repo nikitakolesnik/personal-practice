@@ -98,7 +98,8 @@ void Queue::Delete()
 	{
 		std::cout << "Deleting " << ptrTail->nValue << ", list is now empty\r\n";
 
-		delete ptrHead, ptrTail;
+		delete ptrHead;
+		delete ptrTail;
 		ptrHead = ptrTail = 0;
 	}
 	else                                               // List has two or more items
