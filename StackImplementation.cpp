@@ -68,6 +68,8 @@ int main() {
 			break;
 		}
 	}
+
+	//std::cin.get();
 }
 
 
@@ -112,10 +114,7 @@ void Stack::Clear()
 		std::cout << "Deleting list\r\n";
 
 		if (ptrHead->ptrNext == nullptr)
-		{
 			delete ptrHead;
-			ptrHead = 0;
-		}
 		else
 		{
 			Node *ptrTrav0 = ptrHead, *ptrTrav1 = ptrHead->ptrNext;
@@ -132,6 +131,7 @@ void Stack::Clear()
 			}
 		}
 	}
+
 	ptrHead = 0;
 }
 
