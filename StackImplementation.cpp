@@ -5,14 +5,12 @@
 struct Node {
 	int nValue;
 	Node *ptrNext;
-
-	Node() { nValue = 0; ptrNext = 0; }
-	Node(int n) { nValue = n; ptrNext = 0; }
+	Node(int n = 0) { nValue = n; ptrNext = 0; }
 };
 
 class Stack {
 public:
-	Node * ptrHead;
+	Node *ptrHead;
 	Stack() { ptrHead = 0; }
 
 	void Insert(int);
@@ -23,10 +21,10 @@ public:
 
 
 int main() {
-	std::unique_ptr<Stack> S(new Stack());
 	char cChoice;
 	int  nInput;
 	bool bRepeat = true;
+	std::unique_ptr<Stack> S(new Stack());
 
 	while (bRepeat)
 	{
@@ -68,8 +66,6 @@ int main() {
 			break;
 		}
 	}
-
-	//std::cin.get();
 }
 
 
@@ -84,9 +80,12 @@ void Stack::Insert(int n)
 }
 
 void Stack::Delete() {
-	if (ptrHead == nullptr)               // 0 items
+	// 0 items
+	if (!ptrHead)
 		std::cout << "Nothing to delete\r\n";
-	else if (ptrHead->ptrNext == nullptr) // 1 item
+	
+	// 1 item
+	else if (!ptrHead->ptrNext) 
 	{
 		std::cout << "Deleting " << ptrHead->nValue;
 		
@@ -95,7 +94,9 @@ void Stack::Delete() {
 		
 		std::cout << ", list is now empty\r\n";
 	}
-	else                                  // 2+ items
+
+	// 2+ items
+	else
 	{
 		std::cout << "Deleting " << ptrHead->nValue << "\r\n";
 
@@ -137,7 +138,7 @@ void Stack::Clear()
 
 void Stack::Print() 
 {
-	if (ptrHead != nullptr)
+	if (ptrHead)
 	{
 		Node* trav = ptrHead;
 		std::cout << "List: ";
