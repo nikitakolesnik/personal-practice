@@ -12,9 +12,16 @@ std::string listString(__int16 arr[10]) {
 
 // Linear time complexity
 __int16 peakLinear(__int16 arr[10]) {
+	// Edge case
 	if (arr[0] >= arr[1]) return 0;
 	if (arr[9] >= arr[8]) return 9;
-	for (__int16 i = 1; i < 9; i++) if (arr[i] >= arr[i - 1] && arr[i] >= arr[i + 1]) return i;
+	
+	// Middle case
+	for (__int16 i = 1; i < 9; i++)
+		if (arr[i] >= arr[i - 1] && arr[i] >= arr[i + 1])
+			return i;
+	
+	// Just in case
 	return -1;
 }
 
