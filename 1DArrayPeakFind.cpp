@@ -53,6 +53,7 @@ int main() {
 	__int16 jagged[10]    = { 1,2,1,2,1,2,1,2,1,2 };
 	__int16 even[10]      = { 1,1,1,1,1,1,1,1,1,1 };
 
+	// Print the results of both the inefficient & efficient algorithms for each array
 	std::cout << "For peak-left   list {" << listString(peakLeft)  << "}, peak is at position: " << peakLinear(peakLeft)  << "|" << peakLog(peakLeft, 0, 9)  << "\r\n"
 		  << "For peak-center list {" << listString(peakMid)   << "}, peak is at position: " << peakLinear(peakMid)   << "|" << peakLog(peakMid, 0, 9)   << "\r\n"
 		  << "For peak-right  list {" << listString(peakRight) << "}, peak is at position: " << peakLinear(peakRight) << "|" << peakLog(peakRight, 0, 9) << "\r\n"
