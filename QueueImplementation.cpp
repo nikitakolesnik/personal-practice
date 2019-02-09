@@ -1,5 +1,4 @@
 #include <iostream>
-#include <memory> //unique_ptr
 
 
 struct Node 
@@ -13,6 +12,7 @@ class Queue
 public:
 	Node *ptrHead, *ptrTail;
 	Queue() { ptrHead = ptrTail = 0; }
+	~Queue() { Clear(); delete ptrHead; delete ptrTail; }
 
 	void Insert(int);
 	void Delete();
