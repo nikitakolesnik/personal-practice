@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 
+// Turns an array into a string
 std::string listString(__int16 arr[10]) {
 	std::stringstream ss;
 	for (__int16 i = 0; i < 10; i++) ss << ((i==0) ? "" : ",") << arr[i];
@@ -27,7 +28,8 @@ __int16 peakLinear(__int16 arr[10]) {
 
 // Logarithmic time complexity
 __int16 peakLog(__int16 arr[], __int16 start, __int16 end) {
-	__int16 half = (start + end + 1) / 2;                                                                                                  // Look at the middle of the range
+	// Look at the middle of the range
+	__int16 half = (start + end + 1) / 2; 
 	
 	// if it's on a boundary and bigger, return it
 	if ((half == start && arr[start] >= arr[start+1]) || (half==end && arr[half] >= arr[half-1])) 
