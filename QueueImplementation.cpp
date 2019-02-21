@@ -12,7 +12,7 @@ class Queue
 public:
 	Node *ptrHead, *ptrTail;
 	Queue() { ptrHead = ptrTail = 0; }
-	~Queue() { Clear(); delete ptrHead; delete ptrTail; }
+	~Queue() { Clear(); }
 
 	void Insert(int);
 	void Delete();
