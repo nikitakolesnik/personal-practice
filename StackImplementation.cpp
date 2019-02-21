@@ -11,7 +11,7 @@ class Stack {
 public:
 	Node *ptrHead;
 	Stack() { ptrHead = 0; }
-	~Stack() { Clear(); delete ptrHead; }
+	~Stack() { Clear(); }
 
 	void Insert(int);
 	void Delete();
