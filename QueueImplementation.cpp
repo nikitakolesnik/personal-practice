@@ -100,8 +100,7 @@ void Queue::Delete()
 	else if (ptrHead == ptrTail && ptrHead != nullptr) 
 	{
 		std::cout << "Deleting " << ptrTail->nValue << ", list is now empty\r\n";
-
-		delete ptrHead;
+		
 		delete ptrTail;
 		ptrHead = ptrTail = 0;
 	}
@@ -136,7 +135,6 @@ void Queue::Clear()
 		if (ptrHead == ptrTail)
 		{
 			delete ptrHead;
-			delete ptrTail;
 		}
 		else
 		{
