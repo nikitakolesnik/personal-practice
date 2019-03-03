@@ -13,20 +13,18 @@ struct Node
 	Node(std::string s) : data(s), next(0) {}
 };
 
-
 class Queue
 {
 private:
 	Node *head;
 public:
 	Queue() : head(0) {}
-	~Queue() { QClear(); }
+	~Queue();
 	void QInsert(const std::string&);
 	void QRemove(const std::string&);
 	void QClear();
 	void QPrint();
 };
-
 
 class HashTable
 {
@@ -40,13 +38,12 @@ public:
 	void Print();
 	int  Hash(const std::string&);
 	// Trying the way below for the sake of a simple interface, but it might be unneccessary & redundant
-	// Main looks nicer with everything hid away by calling a parameter-less "Insert", but I don't want to restrict to inserting values from console
+	// Main looks nicer with everything hid away by calling a parameter-less "Insert", but I don't want to restrict to inserting values from console (or with my console prompt)
 	void Insert();
 	void Insert(const std::string&);
 	void Remove();
 	void Remove(const std::string&);
 };
-
 
 int main()
 {
@@ -89,18 +86,19 @@ int main()
 		case 'Q': case'q':
 			repeat = false;
 			break;
-
 		default:
 			std::cout << "Invalid choice." << std::endl;
 		}
 	}
-	T.Clear();
-	std::cin.get();
 }
 
 
 // Queue member function definitions
 
+Queue::~Queue()
+{
+	QClear();
+}
 
 void Queue::QInsert(const std::string &s)
 {
@@ -114,7 +112,7 @@ void Queue::QInsert(const std::string &s)
 		// Otherwise, check if it's already in the list
 		Node *trav = head;
 
-		while (trav) // This was "while (1)" before, and still functions the same way. It just looks less "bad practice" this way, and I couldn't figure out how to clean up this & lines 127-130 so that it landed on the last node and worked for the case of a size=1 list
+		while (trav) // This is functionally the same as "while (1)"/"while (true)", but doesn't look as bad-practice-y. Couldn't figure out how to condense this & lines 125-128 neatly
 		{
 			// Duplicate check
 			if (trav->data == s)
@@ -129,6 +127,7 @@ void Queue::QInsert(const std::string &s)
 			else
 				break;
 		}
+
 		trav->next = new Node(s);
 	}
 
@@ -229,15 +228,14 @@ void Queue::QClear()
 // HashTable member function definitions
 
 
-HashTable::HashTable(const unsigned int _size)
+HashTable::HashTable(const unsigned int _size) 
+	: size(_size)
 {
-	size = _size;
 	Table = new Queue[size]; // Allocating on heap because size isn't known at compile time
 }
 
 HashTable::~HashTable()
 {
-	Clear();
 	delete[] Table;
 	Table = 0; // This seems like a "good practice" thing to do? Not sure if it's really needed
 }
