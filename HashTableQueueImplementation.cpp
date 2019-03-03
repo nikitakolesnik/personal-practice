@@ -114,7 +114,7 @@ void Queue::QInsert(const std::string &s)
 		// Otherwise, check if it's already in the list
 		Node *trav = head;
 
-		while (trav)
+		while (trav) // This was "while (1)" before, and still functions the same way. It just looks less "bad practice" this way, and I couldn't figure out how to clean up this & lines 127-130 so that it landed on the last node and worked for the case of a size=1 list
 		{
 			// Duplicate check
 			if (trav->data == s)
