@@ -102,8 +102,6 @@ Queue::~Queue()
 
 void Queue::QInsert(const std::string &s)
 {
-	// Performance here could be improved from linear to logarithmic time by inserting in sorted order, and then finding the insert point & duplicate checking via binary search
-
 	// If list is empty, make it the head and you're done
 	if (!head)
 		head = new Node(s);
@@ -112,7 +110,7 @@ void Queue::QInsert(const std::string &s)
 		// Otherwise, check if it's already in the list
 		Node *trav = head;
 
-		while (trav) // This is functionally the same as "while (1)"/"while (true)", but doesn't look as bad-practice-y. Couldn't figure out how to condense this & lines 125-128 neatly
+		while (trav)
 		{
 			// Duplicate check
 			if (trav->data == s)
@@ -136,8 +134,6 @@ void Queue::QInsert(const std::string &s)
 
 void Queue::QRemove(const std::string &s)
 {
-	// The entries aren't in a sorted order, so any list with collision will be searched in linear time
-
 	// If list is empty, do nothing
 	if (!head)
 	{
