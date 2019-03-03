@@ -1,5 +1,10 @@
+// Implementing a Hash Table as an array of Linked List queues, where the stored element is a string
+// Made the interface as friendly as possible, and the size is set by the user during runtime
+
+
 #include <iostream>
 #include <string>
+
 
 struct Node
 {
@@ -7,6 +12,7 @@ struct Node
 	Node *next;
 	Node(std::string s) : data(s), next(0) {}
 };
+
 
 class Queue
 {
@@ -20,6 +26,7 @@ public:
 	void QClear();
 	void QPrint();
 };
+
 
 class HashTable
 {
@@ -39,6 +46,7 @@ public:
 	void Remove();
 	void Remove(const std::string&);
 };
+
 
 int main()
 {
@@ -69,19 +77,15 @@ int main()
 		case '1':
 			T.Insert();
 			break;
-
 		case '2':
 			T.Remove();
 			break;
-
 		case '3':
 			T.Clear();
 			break;
-
 		case '4':
 			T.Print();
 			break;
-
 		case 'Q': case'q':
 			repeat = false;
 			break;
@@ -110,7 +114,7 @@ void Queue::QInsert(const std::string &s)
 		// Otherwise, check if it's already in the list
 		Node *trav = head;
 
-		while (1)
+		while (trav)
 		{
 			// Duplicate check
 			if (trav->data == s)
