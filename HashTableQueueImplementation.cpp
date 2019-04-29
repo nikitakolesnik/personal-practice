@@ -233,7 +233,7 @@ HashTable::HashTable(const unsigned int _size)
 HashTable::~HashTable()
 {
 	delete[] Table;
-	Table = 0; // This seems like a "good practice" thing to do? Not sure if it's really needed
+	Table = 0;
 }
 
 void HashTable::Clear()
