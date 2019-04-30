@@ -6,7 +6,7 @@ struct Node
 {
 	int Value;
 	Node *Next;
-	Node(int n = 0) { Value = n; Next = 0; }
+	Node(int n = 0) : Value(n) { Next = 0; }
 };
 
 class Stack
