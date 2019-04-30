@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory> // std::unique_ptr
 
 
 struct Node
@@ -14,7 +15,7 @@ public:
 	Queue() { head = tail = 0; }
 	~Queue() { Clear(); }
 
-	void Insert(int);
+	void Insert(const int&);
 	void Delete();
 	void Clear();
 	void Print();
@@ -70,7 +71,7 @@ int main() {
 }
 
 
-void Queue::Insert(int n)
+void Queue::Insert(const int& n)
 {
 	std::cout << "Inserting " << n << "\r\n";
 
@@ -158,16 +159,16 @@ void Queue::Clear()
 
 void Queue::Print()
 {
-	if (head != nullptr)
+	if (head)
 	{
-		Node* trav = head;
+		Node* curr = head;
 		std::cout << "List: ";
 
-		while (trav) {
-			std::cout << trav->Value << ' ';
+		while (curr) {
+			std::cout << curr->Value << ' ';
 
-			if (trav->Next)
-				trav = trav->Next;
+			if (curr->Next)
+				curr = curr->Next;
 			else
 				break;
 		}
