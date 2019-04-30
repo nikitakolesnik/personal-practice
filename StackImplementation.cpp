@@ -1,19 +1,22 @@
 #include <iostream>
+#include <memory> //unique_ptr
 
 
-struct Node {
-	int nValue;
-	Node *ptrNext;
-	Node(int n = 0) { nValue = n; ptrNext = 0; }
+struct Node
+{
+	int Value;
+	Node *Next;
+	Node(int n = 0) { Value = n; Next = 0; }
 };
 
-class Stack {
+class Stack
+{
+	Node *head;
 public:
-	Node *ptrHead;
-	Stack() { ptrHead = 0; }
+	Stack() { head = 0; }
 	~Stack() { Clear(); }
 
-	void Insert(int);
+	void Insert(const int&);
 	void Delete();
 	void Clear();
 	void Print();
@@ -69,28 +72,28 @@ int main() {
 }
 
 
-void Stack::Insert(int n) 
+void Stack::Insert(const int& n)
 {
 	std::cout << "Inserting " << n << "\r\n";
 
-	Node *ptrNode = new Node(n);
+	Node *node = new Node(n);
 
-	ptrNode->ptrNext = ptrHead;
-	ptrHead = ptrNode;
+	node->Next = head;
+    head = node;
 }
 
 void Stack::Delete() {
 	// 0 items
-	if (!ptrHead)
+	if (!head)
 		std::cout << "Nothing to delete\r\n";
 	
 	// 1 item
-	else if (!ptrHead->ptrNext) 
+	else if (!head->Next)
 	{
-		std::cout << "Deleting " << ptrHead->nValue;
+		std::cout << "Deleting " << head->Value;
 		
-		delete ptrHead;
-		ptrHead = 0;
+		delete head;
+        head = 0;
 		
 		std::cout << ", list is now empty\r\n";
 	}
@@ -98,56 +101,56 @@ void Stack::Delete() {
 	// 2+ items
 	else
 	{
-		std::cout << "Deleting " << ptrHead->nValue << "\r\n";
+		std::cout << "Deleting " << head->Value << "\r\n";
 
-		Node *ptrTemp = ptrHead->ptrNext;
-		delete ptrHead;
-		ptrHead = ptrTemp;
+		Node *temp = head->Next;
+		delete head;
+        head = temp;
 	}
 }
 
 void Stack::Clear() 
 {
-	if (!ptrHead)
+	if (!head)
 		std::cout << "Nothing to delete; list is already empty\r\n";
 	else
 	{
 		std::cout << "Deleting list\r\n";
 
-		if (ptrHead->ptrNext == nullptr)
-			delete ptrHead;
+		if (head->Next == nullptr)
+			delete head;
 		else
 		{
-			Node *ptrTrav0 = ptrHead, *ptrTrav1 = ptrHead->ptrNext;
+			Node *ptrTrav0 = head, *ptrTrav1 = head->Next;
 
 			while (true)
 			{
 				delete ptrTrav0;
 				ptrTrav0 = ptrTrav1;
 
-				if (ptrTrav1->ptrNext)
-					ptrTrav1 = ptrTrav1->ptrNext;
+				if (ptrTrav1->Next)
+					ptrTrav1 = ptrTrav1->Next;
 				else
 					break;
 			}
 		}
 	}
 
-	ptrHead = 0;
+    head = 0;
 }
 
 void Stack::Print() 
 {
-	if (ptrHead)
+	if (head)
 	{
-		Node* trav = ptrHead;
+		Node* trav = head;
 		std::cout << "List: ";
 
 		while (trav) {
-			std::cout << trav->nValue << ' ';
+			std::cout << trav->Value << ' ';
 
-			if (trav->ptrNext)
-				trav = trav->ptrNext;
+			if (trav->Next)
+				trav = trav->Next;
 			else
 				break;
 		}
