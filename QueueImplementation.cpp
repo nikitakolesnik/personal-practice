@@ -6,6 +6,7 @@ struct Node
 {
 	int Value;
 	Node *Next;
+	Node(int n = 0) : Value(n), Next(0) {}
 };
 
 class  Queue
@@ -75,8 +76,7 @@ void Queue::Insert(const int& n)
 {
 	std::cout << "Inserting " << n << "\r\n";
 
-	Node *node = new Node();
-	node->Value = n;
+	Node *node = new Node(n);
 
 	if (!node) {
 		std::cout << "No memory available.\r\n";
