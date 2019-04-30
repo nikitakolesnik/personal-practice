@@ -1,5 +1,5 @@
 #include <iostream>
-#include <memory> // for smart pointer
+#include <memory> // std::unique_ptr
 
 
 struct Node
