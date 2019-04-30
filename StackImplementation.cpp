@@ -1,19 +1,19 @@
 #include <iostream>
-#include <memory> // std::unique_ptr
+#include <memory> // for smart pointer
 
 
 struct Node
 {
 	int Value;
 	Node *Next;
-	Node(int n = 0) : Value(n) { Next = 0; }
+	Node(int n = 0) : Value(n), Next(0) {}
 };
 
 class Stack
 {
 	Node *head;
 public:
-	Stack() { head = 0; }
+	Stack() : head(0) {}
 	~Stack() { Clear(); }
 
 	void Insert(const int&);
