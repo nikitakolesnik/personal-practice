@@ -1,5 +1,5 @@
 #include <iostream>
-#include <memory> //unique_ptr
+#include <memory> // for smart pointer
 
 
 struct Node
@@ -35,7 +35,7 @@ int main() {
 			<< "\r\n"
 			<< "   1. Print\r\n"
 			<< "   2. Insert\r\n"
-			<< "   3. Delete end\r\n"
+			<< "   3. Delete front\r\n"
 			<< "   4. Delete all\r\n"
 			<< "   Q. Quit\r\n"
 			<< "      Enter Selection: ";
