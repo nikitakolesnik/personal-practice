@@ -37,11 +37,9 @@ public:
 	void Clear();
 	void Print();
 	int  Hash(const std::string&);
-	// Trying the way below for the sake of a simple interface, but it might be unneccessary & redundant
-	// Main looks nicer with everything hid away by calling a parameter-less "Insert", but I don't want to restrict to inserting values from console (or with my console prompt)
 	void Insert();
-	void Insert(const std::string&);
 	void Remove();
+	void Insert(const std::string&);
 	void Remove(const std::string&);
 };
 
