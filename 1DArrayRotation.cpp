@@ -3,8 +3,8 @@
 #include <iostream>
 
 
-const int SIZE = 10; // Size of the consecutive-ascending int array to generate
-const int ROTATE = 1;  // How many positions to rotate it by, using each algorithm
+const int SIZE   = 10; // Size of the consecutive-ascending int array to generate
+const int ROTATE =  1; // How many positions to rotate it by, using each algorithm
 
 
 void printArray(int arr[])
