@@ -1,17 +1,17 @@
 #include <iostream>
 
 
-struct Node 
+struct Node
 {
-	int nValue;
-	Node *ptrNext;
+	int Value;
+	Node *Next;
 };
 
-class Queue 
+class  Queue
 {
+	Node *head, *tail;
 public:
-	Node *ptrHead, *ptrTail;
-	Queue() { ptrHead = ptrTail = 0; }
+	Queue() { head = tail = 0; }
 	~Queue() { Clear(); }
 
 	void Insert(int);
@@ -23,11 +23,11 @@ public:
 
 int main() {
 	std::unique_ptr<Queue> Q(new Queue());
-	char cChoice;
-	int  nInput;
-	bool bRepeat = true;
+	char choice;
+	int  input;
+	bool repeat = true;
 
-	while (bRepeat)
+	while (repeat)
 	{
 		std::cout
 			<< "\r\n"
@@ -38,20 +38,20 @@ int main() {
 			<< "   Q. Quit\r\n"
 			<< "      Enter Selection: ";
 
-		std::cin >> cChoice;
+		std::cin >> choice;
 		std::cin.ignore(1000, 10);
 		std::cout << "\r\n";
 
-		switch (cChoice)
+		switch (choice)
 		{
 		case '1':
 			Q->Print();
 			break;
 		case '2':
 			std::cout << "      Enter value: ";
-			std::cin >> nInput;
+			std::cin >> input;
 			std::cin.ignore(1000, 10);
-			Q->Insert(nInput);
+			Q->Insert(input);
 			break;
 		case '3':
 			Q->Delete();
@@ -60,7 +60,7 @@ int main() {
 			Q->Clear();
 			break;
 		case 'Q': case 'q':
-			bRepeat = false;
+			repeat = false;
 			break;
 		default:
 			std::cout << "Invalid input\r\n";
@@ -70,104 +70,104 @@ int main() {
 }
 
 
-void Queue::Insert(int n) 
+void Queue::Insert(int n)
 {
 	std::cout << "Inserting " << n << "\r\n";
 
-	Node *ptrNode = new Node();
-	ptrNode->nValue = n;
+	Node *node = new Node();
+	node->Value = n;
 
-	if (!ptrNode) {
+	if (!node) {
 		std::cout << "No memory available.\r\n";
 		return;
 	}
 
-	if (!ptrHead)
-		ptrHead = ptrNode;
+	if (!head)
+		head = node;
 	else
-		ptrTail->ptrNext = ptrNode;
+		tail->Next = node;
 
-	ptrTail = ptrNode;
+	tail = node;
 }
 
-void Queue::Delete() 
+void Queue::Delete()
 {
 	// If the list is empty
-	if (!ptrHead) 
+	if (!head)
 		std::cout << "Deleting nothing; list is empty\r\n";
-	
-	// If the list has one item
-	else if (ptrHead == ptrTail && ptrHead != nullptr) 
-	{
-		std::cout << "Deleting " << ptrTail->nValue << ", list is now empty\r\n";
-		
-		delete ptrTail;
-		ptrHead = ptrTail = 0;
-	}
-	
-	// List has two or more items
-	else 
-	{
-		std::cout << "Deleting " << ptrTail->nValue;
-		
-		Node *ptrTrav = ptrHead;
-		
-		// Find the second-to-last node
-		while (ptrTrav->ptrNext != ptrTail) 
-			ptrTrav = ptrTrav->ptrNext;
-		
-		delete ptrTail;
-		ptrTail = ptrTrav;
-		ptrTail->ptrNext = 0;
 
-		std::cout << ", new tail is " << ptrTail->nValue << "\r\n";
+	// If the list has one item
+	else if (head == tail && head != nullptr)
+	{
+		std::cout << "Deleting " << tail->Value << ", list is now empty\r\n";
+		delete tail;
+		head = tail = 0;
+	}
+
+	// List has two or more items
+	else
+	{
+		std::cout << "Deleting " << tail->Value;
+
+		Node *curr = head;
+
+		// Find the second-to-last node
+		while (curr->Next != tail)
+			curr = curr->Next;
+
+		delete tail;
+		tail = curr;
+		tail->Next = 0;
+
+		std::cout << ", new tail is " << tail->Value << "\r\n";
 	}
 }
 
-void Queue::Clear() 
+void Queue::Clear()
 {
-	if (!ptrHead)
+	if (!head)
 		std::cout << "Nothing to delete; list is already empty\r\n";
 	else
 	{
 		std::cout << "Deleting list\r\n";
 
-		if (ptrHead == ptrTail)
+		if (head == tail)
 		{
-			delete ptrHead;
+			delete head;
+			delete tail;
 		}
 		else
 		{
-			Node *ptrTrav0 = ptrHead, *ptrTrav1 = ptrHead->ptrNext;
+			Node *curr = head, *ahead = head->Next;
 
 			while (true)
 			{
-				delete ptrTrav0;
-				ptrTrav0 = ptrTrav1;
+				delete curr;
+				curr = ahead;
 
-				if (ptrTrav1->ptrNext)
-					ptrTrav1 = ptrTrav1->ptrNext;
+				if (ahead->Next)
+					ahead = ahead->Next;
 				else
 					break;
 			}
 		}
 	}
 
-	ptrHead = ptrTail = 0;
+	head = tail = 0;
 }
 
-void Queue::Print() 
+void Queue::Print()
 {
-	if (ptrHead != nullptr)
+	if (head != nullptr)
 	{
-		Node* trav = ptrHead;
+		Node* trav = head;
 		std::cout << "List: ";
 
 		while (trav) {
-			std::cout << trav->nValue << ' ';
+			std::cout << trav->Value << ' ';
 
-			if (trav->ptrNext)
-				trav = trav->ptrNext;
+			if (trav->Next)
+				trav = trav->Next;
 			else
 				break;
 		}
