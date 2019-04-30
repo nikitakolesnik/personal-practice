@@ -13,7 +13,7 @@ class  Queue
 {
 	Node *head, *tail;
 public:
-	Queue() { head = tail = 0; }
+	Queue() : head(0), tail(0) {}
 	~Queue() { Clear(); }
 
 	void Insert(const int&);
