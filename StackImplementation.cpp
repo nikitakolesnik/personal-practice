@@ -121,15 +121,15 @@ void Stack::Clear()
 			delete head;
 		else
 		{
-			Node *ptrTrav0 = head, *ptrTrav1 = head->Next;
+			Node *curr = head, *ahead = head->Next;
 
 			while (true)
 			{
-				delete ptrTrav0;
-				ptrTrav0 = ptrTrav1;
+				delete curr;
+				curr = ahead;
 
-				if (ptrTrav1->Next)
-					ptrTrav1 = ptrTrav1->Next;
+				if (ahead->Next)
+					ahead = ahead->Next;
 				else
 					break;
 			}
