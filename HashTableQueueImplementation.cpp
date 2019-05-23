@@ -254,7 +254,7 @@ void HashTable::Print()
 int  HashTable::Hash(const std::string &s)
 {
 	// A simple hash function: add the ASCII values of the input string, then mod by table size.
-	// While acceptable for the purposes of this exercise, it has the problem of assigning duplicate indices to palindromes.
+	// While acceptable for the purposes of this exercise, it has the problem of assigning duplicate indices to anagrams.
 	
 	unsigned int total = 0;
 	for (unsigned int i = 0; i < s.length(); i++)
