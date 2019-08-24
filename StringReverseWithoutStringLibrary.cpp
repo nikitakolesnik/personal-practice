@@ -1,4 +1,5 @@
-//A completely worthless, not applicable exercise
+// A completely worthless, not applicable exercise
+// NEXT GOAL: get rid of "trav"(ersal) variable - get length by incrementing the argument, and reverse it working backwards
 
 #include <iostream>
 
