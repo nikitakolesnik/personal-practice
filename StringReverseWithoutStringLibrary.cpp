@@ -5,16 +5,16 @@
 void mystrrev(char* s)
 {
 	// Find out how long it is
-	int len = 0;
 	char* trav = s;
-	while (*trav++)
-		len++;
+	while (*trav)
+		++trav;
+	int len = trav - s;
 
 	// Only need to iterate for half the length, odd-length-case is automatically handled (ex: length=9, truncated division result is 4, 5th spot correctly ignored)
-	for (int i = 0; i < len/2; i++)
+	for (int i = 0; i < len / 2; i++)
 	{
 		// Swap str[i] & str[1+len-i] without using extra variable
-		*(s+i) ^= *(s + len - i - 1);
+		*(s + i) ^= *(s + len - i - 1);
 		*(s + len - i - 1) ^= *(s + i);
 		*(s + i) ^= *(s + len - i - 1);
 	}
@@ -22,10 +22,8 @@ void mystrrev(char* s)
 
 int main()
 {
-	char test[6];
-	strcpy_s(test, "hello");
-	
+	char test[29];
+	strcpy_s(test, "This is a great use of time.");
 	mystrrev(test);
-
 	std::cout << test << '\n';
 }
