@@ -11,7 +11,7 @@ void str_rev(char* str)
 
 	for (int i = 0; i < len / 2; i++) // Only need to iterate for half the length, odd-length-case is automatically handled (ex: length=9, truncated division result is 4, 5th spot correctly ignored)
 	{
-		*(str+i) ^= *(str+len-i-1); // Swap str[i] & str[1+len-i] without using extra variable
+		*(str+i) ^= *(str+len-i-1); // XOR swap str[i] & str[1+len-i] to not use extra var
 		*(str+len-i-1) ^= *(str+i);
 		*(str+i) ^= *(str+len-i-1);
 	}
