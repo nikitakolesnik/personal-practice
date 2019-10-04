@@ -19,8 +19,8 @@ void str_rev(char* str)
 
 int main()
 {
-	char str[29];
-	strcpy_s(str, "This is a great use of time.");
+	char str[32];
+	strcpy_s(str, "This is a great use of my time!");
 	str_rev(str);
 	std::cout << str << '\n';
 }
