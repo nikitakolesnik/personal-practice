@@ -1,8 +1,6 @@
-//A completely worthless, not applicable exercise
-
 #include <iostream>
 
-void str_rev(char* str)
+void my_str_rev(char* str)
 {
 	char* walk = str; // Find out how long it is
 	while (*walk)
@@ -21,6 +19,6 @@ int main()
 {
 	char str[32];
 	strcpy_s(str, "This is a great use of my time!");
-	str_rev(str);
+	my_str_rev(str);
 	std::cout << str << '\n';
 }
