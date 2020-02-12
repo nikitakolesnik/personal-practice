@@ -1,3 +1,7 @@
+// Simulates a video game inventory
+// Solves problems related to picking up stackable items
+// Edits the resource being consumed
+
 #include <string>
 #include <iostream>
 #include <vector>
@@ -50,28 +54,28 @@ public:
 
 		bool canPickUp = false, incompletePickup = true;
 
-		for(auto invSlot : _inv)
+		for(auto slot : _inv)
 		{ 
-			if (invSlot->Id == ItemId::EMPTY || (invSlot->Id == item->Id && invSlot->Stack < _maxStack))
+			if (slot->Id == ItemId::EMPTY || (slot->Id == item->Id && slot->Stack < _maxStack))
 			{
 				canPickUp = true;
 
-				if (invSlot->Id == ItemId::EMPTY)
+				if (slot->Id == ItemId::EMPTY)
 				{
-					invSlot->Id = item->Id;
+					slot->Id = item->Id;
 				}
 
-				int canFit = _maxStack - invSlot->Stack;
+				int canFit = _maxStack - slot->Stack;
 
 				if (item->Stack > canFit)
 				{
-					invSlot->Stack += canFit;
+					slot->Stack += canFit;
 					item->Stack -= canFit;
 				}
 				else
 				{
 					incompletePickup = false;
-					invSlot->Stack += item->Stack;
+					slot->Stack += item->Stack;
 					item->Stack = 0;
 					break;
 				}
