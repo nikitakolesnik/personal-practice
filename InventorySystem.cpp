@@ -20,9 +20,16 @@ public:
 	{
 		_inv.reserve(size);
 		
-		for (int i = 0; i < size; i++)
+		while (size--)
 		{
 			_inv.push_back(new Item{ItemId::EMPTY, 0});
+		}
+	}
+	~Inventory()
+	{
+		for (auto i : _inv)
+		{
+			delete i;
 		}
 	}
 	void Print()
@@ -100,59 +107,57 @@ int main()
 
 	inv.PickUp(GroundItem0);
 	inv.PickUp(GroundItem1);
-	inv.PickUp(GroundItem1); // Intentional repeat to show that the ground item is now at 0
+	inv.PickUp(GroundItem1); // Try to pick this up again, to show that the ground item is now at 0 stack
 	inv.PickUp(GroundItem2);
 	inv.PickUp(GroundItem3);
-	inv.PickUp(GroundItem4);
-	inv.PickUp(GroundItem5);
-	inv.PickUp(GroundItem5);
+	inv.PickUp(GroundItem4); // Try to pick up something that will fill a stack & generate a new one
+	inv.PickUp(GroundItem5); // Try to pick up something that won't fit in inventory
+	inv.PickUp(GroundItem5); // Try to pick up leftover of item, with full inventory
 }
 
-/* OUTPUT
+// OUTPUT:
 
-Picking up 3x #1...
-3x #1
----
-Picking up 1x #2...
-3x #1
-1x #2
----
-Picking up 0x #2...
-3x #1
-1x #2
----
-Picking up 6x #3...
-3x #1
-1x #2
-6x #3
----
-Picking up 10x #3...
-3x #1
-1x #2
-10x #3
-6x #3
----
-Picking up 7x #3...
-3x #1
-1x #2
-10x #3
-10x #3
-3x #3
----
-Picking up 90x #3...
-Left 33 on the floor.
-3x #1
-1x #2
-10x #3
-10x #3
-10x #3
-10x #3
-10x #3
-10x #3
-10x #3
-10x #3
----
-Picking up 33x #3...
-Not enough space to pick up the item.
-
-*/
+// Picking up 3x #1...
+// 3x #1
+// ---
+// Picking up 1x #2...
+// 3x #1
+// 1x #2
+// ---
+// Picking up 0x #2...
+// 3x #1
+// 1x #2
+// ---
+// Picking up 6x #3...
+// 3x #1
+// 1x #2
+// 6x #3
+// ---
+// Picking up 10x #3...
+// 3x #1
+// 1x #2
+// 10x #3
+// 6x #3
+// ---
+// Picking up 7x #3...
+// 3x #1
+// 1x #2
+// 10x #3
+// 10x #3
+// 3x #3
+// ---
+// Picking up 90x #3...
+// Left 33 on the floor.
+// 3x #1
+// 1x #2
+// 10x #3
+// 10x #3
+// 10x #3
+// 10x #3
+// 10x #3
+// 10x #3
+// 10x #3
+// 10x #3
+// ---
+// Picking up 33x #3...
+// Not enough space to pick up the item.
