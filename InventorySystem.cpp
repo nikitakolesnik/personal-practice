@@ -24,8 +24,6 @@ public:
 		{
 			_inv.push_back(new Item{ItemId::EMPTY, 0});
 		}
-
-		Print();
 	}
 	void Print()
 	{
@@ -97,13 +95,64 @@ int main()
 	Item *GroundItem1 = new Item{ ItemId::GUN,   1 };
 	Item *GroundItem2 = new Item{ ItemId::AMMO,  6 };
 	Item *GroundItem3 = new Item{ ItemId::AMMO, 10 };
-	Item *GroundItem4 = new Item{ ItemId::AMMO,  7 };
-	Item *GroundItem5 = new Item{ ItemId::AMMO, 90 };
+	Item* GroundItem4 = new Item{ ItemId::AMMO,  7 };
+	Item* GroundItem5 = new Item{ ItemId::AMMO, 90 };
 
 	inv.PickUp(GroundItem0);
 	inv.PickUp(GroundItem1);
+	inv.PickUp(GroundItem1); // Intentional repeat to show that the ground item is now at 0
 	inv.PickUp(GroundItem2);
 	inv.PickUp(GroundItem3);
 	inv.PickUp(GroundItem4);
 	inv.PickUp(GroundItem5);
+	inv.PickUp(GroundItem5);
 }
+
+/* OUTPUT
+
+Picking up 3x #1...
+3x #1
+---
+Picking up 1x #2...
+3x #1
+1x #2
+---
+Picking up 0x #2...
+3x #1
+1x #2
+---
+Picking up 6x #3...
+3x #1
+1x #2
+6x #3
+---
+Picking up 10x #3...
+3x #1
+1x #2
+10x #3
+6x #3
+---
+Picking up 7x #3...
+3x #1
+1x #2
+10x #3
+10x #3
+3x #3
+---
+Picking up 90x #3...
+Left 33 on the floor.
+3x #1
+1x #2
+10x #3
+10x #3
+10x #3
+10x #3
+10x #3
+10x #3
+10x #3
+10x #3
+---
+Picking up 33x #3...
+Not enough space to pick up the item.
+
+*/
