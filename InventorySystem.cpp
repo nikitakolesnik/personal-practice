@@ -2,7 +2,6 @@
 // Solves problems related to picking up stackable items
 // Edits the resource being consumed
 
-#include <string>
 #include <iostream>
 #include <vector>
 
