@@ -18,34 +18,24 @@ struct Item
 class Inventory
 {
 	int _invSize, _maxStack;
-	std::vector<Item*> _inv;
+	std::vector<Item> _inv;
 public:
 	Inventory(int size = 10, int stack = 10) : _invSize(size), _maxStack(stack)
 	{
-		_inv.reserve(size);
-		
-		while (size--)
-		{
-			_inv.push_back(new Item{ItemId::EMPTY, 0});
-		}
+		_inv = std::vector<Item>(size, Item{ItemId::EMPTY, 0});
 	}
 	~Inventory()
 	{
-		for (auto i : _inv)
-		{
-			delete i;
-		}
 	}
 	void Print()
 	{
 		for (auto i : _inv)
 		{
-			if (i->Stack > 0)
+			if (i.Stack > 0)
 			{
-				std::cout << i->Stack << "x #" << (int)i->Id << "\r\n";
+				std::cout << i.Stack << "x #" << (int)i.Id << "\r\n";
 			}
 		}
-
 		std::cout << "---\r\n";
 	}
 	void PickUp(Item &item)
@@ -54,34 +44,33 @@ public:
 
 		bool canPickUp = false, incompletePickup = true;
 
-		for(auto slot : _inv)
+		for(auto &slot : _inv)
 		{ 
-			if (slot->Id == ItemId::EMPTY || (slot->Id == item.Id && slot->Stack < _maxStack))
+			if (slot.Id == ItemId::EMPTY || (slot.Id == item.Id && slot.Stack < _maxStack))
 			{
 				canPickUp = true;
 
-				if (slot->Id == ItemId::EMPTY)
+				if (slot.Id == ItemId::EMPTY)
 				{
-					slot->Id = item.Id;
+					slot.Id = item.Id;
 				}
 
-				int canFit = _maxStack - slot->Stack;
+				int canFit = _maxStack - slot.Stack;
 
 				if (item.Stack > canFit)
 				{
-					slot->Stack += canFit;
+					slot.Stack += canFit;
 					item.Stack -= canFit;
 				}
 				else
 				{
 					incompletePickup = false;
-					slot->Stack += item.Stack;
+					slot.Stack += item.Stack;
 					item.Stack = 0;
 					break;
 				}
 			}
 		}
-
 		if (!canPickUp)
 		{
 			std::cout << "Not enough space to pick up the item.\r\n";
