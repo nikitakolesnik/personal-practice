@@ -95,14 +95,14 @@ public:
 
 int main() 
 {
-	Inventory inv{};
+	Inventory inv;
 
-	Item GroundItem0{ ItemId::FOOD,  3 };
-	Item GroundItem1{ ItemId::GUN,   1 };
-	Item GroundItem2{ ItemId::AMMO,  6 };
-	Item GroundItem3{ ItemId::AMMO, 10 };
-	Item GroundItem4{ ItemId::AMMO,  7 };
-	Item GroundItem5{ ItemId::AMMO, 90 };
+	Item GroundItem0{ItemId::FOOD,  3};
+	Item GroundItem1{ItemId::GUN,   1};
+	Item GroundItem2{ItemId::AMMO,  6};
+	Item GroundItem3{ItemId::AMMO, 10};
+	Item GroundItem4{ItemId::AMMO,  7};
+	Item GroundItem5{ItemId::AMMO, 90};
 
 	inv.PickUp(GroundItem0);
 	inv.PickUp(GroundItem1);
