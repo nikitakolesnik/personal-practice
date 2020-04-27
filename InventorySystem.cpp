@@ -48,35 +48,35 @@ public:
 
 		std::cout << "---\r\n";
 	}
-	void PickUp(Item *item)
+	void PickUp(Item &item)
 	{
-		std::cout << "Picking up " << item->Stack << "x #" << (int)item->Id << "...\r\n";
+		std::cout << "Picking up " << item.Stack << "x #" << (int)item.Id << "...\r\n";
 
 		bool canPickUp = false, incompletePickup = true;
 
 		for(auto slot : _inv)
 		{ 
-			if (slot->Id == ItemId::EMPTY || (slot->Id == item->Id && slot->Stack < _maxStack))
+			if (slot->Id == ItemId::EMPTY || (slot->Id == item.Id && slot->Stack < _maxStack))
 			{
 				canPickUp = true;
 
 				if (slot->Id == ItemId::EMPTY)
 				{
-					slot->Id = item->Id;
+					slot->Id = item.Id;
 				}
 
 				int canFit = _maxStack - slot->Stack;
 
-				if (item->Stack > canFit)
+				if (item.Stack > canFit)
 				{
 					slot->Stack += canFit;
-					item->Stack -= canFit;
+					item.Stack -= canFit;
 				}
 				else
 				{
 					incompletePickup = false;
-					slot->Stack += item->Stack;
-					item->Stack = 0;
+					slot->Stack += item.Stack;
+					item.Stack = 0;
 					break;
 				}
 			}
@@ -90,7 +90,7 @@ public:
 		{
 			if (incompletePickup)
 			{
-				std::cout << "Left " << item->Stack << " on the floor.\r\n";
+				std::cout << "Left " << item.Stack << " on the floor.\r\n";
 			}
 			
 			Print();
@@ -102,12 +102,12 @@ int main()
 {
 	Inventory inv{};
 
-	Item *GroundItem0 = new Item{ ItemId::FOOD,  3 };
-	Item *GroundItem1 = new Item{ ItemId::GUN,   1 };
-	Item *GroundItem2 = new Item{ ItemId::AMMO,  6 };
-	Item *GroundItem3 = new Item{ ItemId::AMMO, 10 };
-	Item* GroundItem4 = new Item{ ItemId::AMMO,  7 };
-	Item* GroundItem5 = new Item{ ItemId::AMMO, 90 };
+	Item GroundItem0{ ItemId::FOOD,  3 };
+	Item GroundItem1{ ItemId::GUN,   1 };
+	Item GroundItem2{ ItemId::AMMO,  6 };
+	Item GroundItem3{ ItemId::AMMO, 10 };
+	Item GroundItem4{ ItemId::AMMO,  7 };
+	Item GroundItem5{ ItemId::AMMO, 90 };
 
 	inv.PickUp(GroundItem0);
 	inv.PickUp(GroundItem1);
