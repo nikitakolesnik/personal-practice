@@ -11,7 +11,10 @@ struct Item
 {
 	ItemId Id;
 	int Stack;
-	Item(ItemId i = ItemId::EMPTY, int s = 0) : Id(i), Stack(s) {}
+	Item(ItemId i = ItemId::EMPTY, int s = 0) 
+		: Id(i), Stack(s) 
+	{
+	}
 };
 
 class Inventory
@@ -19,13 +22,16 @@ class Inventory
 	int _invSize, _maxStack;
 	std::vector<Item> _inv;
 public:
-	Inventory(int size = 10, int stack = 10) : _invSize(size), _maxStack(stack)
+	Inventory(int size = 10, int stack = 10)
+		: _invSize(size), _maxStack(stack)
 	{
 		_inv = std::vector<Item>(size, Item{ItemId::EMPTY, 0});
 	}
+
 	~Inventory()
 	{
 	}
+
 	void Print()
 	{
 		for (auto i : _inv)
@@ -37,6 +43,7 @@ public:
 		}
 		std::cout << "---\r\n";
 	}
+
 	void PickUp(Item &item)
 	{
 		std::cout << "Picking up " << item.Stack << "x #" << (int)item.Id << "...\r\n";
