@@ -1,4 +1,6 @@
-// I wrote this for a friend who said he had trouble solving problems related to stackable inventory items.
+// Simulates a video game inventory
+// Solves problems related to picking up stackable items
+// Edits the resource being consumed
 
 #include <iostream>
 #include <vector>
@@ -9,8 +11,8 @@ struct Item
 {
 	ItemId Id;
 	int Stack;
-	Item(ItemId i = ItemId::EMPTY, int s = 0) 
-		: Id(i), Stack(s) 
+	Item(ItemId i = ItemId::EMPTY, int s = 0)
+		: Id(i), Stack(s)
 	{
 	}
 };
@@ -23,7 +25,7 @@ public:
 	Inventory(int size = 10, int stack = 10)
 		: _invSize(size), _maxStack(stack)
 	{
-		_inv = std::vector<Item>(size, Item{ItemId::EMPTY, 0});
+		_inv = std::vector<Item>(size, Item{ ItemId::EMPTY, 0 });
 	}
 
 	void Print()
@@ -32,23 +34,28 @@ public:
 		{
 			if (i.Stack > 0)
 			{
-				std::cout << i.Stack << "x #" << (int)i.Id << "\r\n";
+				std::cout << '\t' << i.Stack << "x #" << (int)i.Id << "\r\n";
 			}
 		}
-		std::cout << "---\r\n";
 	}
 
-	void PickUp(Item &item)
+	void PickUp(Item& item)
 	{
 		std::cout << "Picking up " << item.Stack << "x #" << (int)item.Id << "...\r\n";
 
-		bool canPickUp = false, incompletePickup = true;
+		if (item.Stack == 0)
+		{
+			std::cout << "\tNothing to pick up.\r\n";
+			return;
+		}
 
-		for(auto &slot : _inv)
-		{ 
+		bool inventoryFull = false, incompletePickup = true;
+
+		for (auto &slot : _inv)
+		{
 			if (slot.Id == ItemId::EMPTY || (slot.Id == item.Id && slot.Stack < _maxStack))
 			{
-				canPickUp = true;
+				inventoryFull = false;
 
 				if (slot.Id == ItemId::EMPTY)
 				{
@@ -71,23 +78,23 @@ public:
 				}
 			}
 		}
-		if (!canPickUp)
+		if (inventoryFull)
 		{
-			std::cout << "Not enough space to pick up the item.\r\n";
+			std::cout << "\tNot enough space to pick up the item.\r\n";
 		}
 		else
 		{
+			Print();
 			if (incompletePickup)
 			{
-				std::cout << "Left " << item.Stack << " on the floor.\r\n";
+				std::cout << "\tLeft " << item.Stack << " on the floor.\r\n";
 			}
-			
-			Print();
+
 		}
 	}
 };
 
-int main() 
+int main()
 {
 	Inventory inv;
 
@@ -111,46 +118,38 @@ int main()
 // OUTPUT:
 
 // Picking up 3x #1...
-// 3x #1
-// ---
+//     3x #1
 // Picking up 1x #2...
-// 3x #1
-// 1x #2
-// ---
+//     3x #1
+//     1x #2
 // Picking up 0x #2...
-// 3x #1
-// 1x #2
-// ---
+//     Nothing to pick up.
 // Picking up 6x #3...
-// 3x #1
-// 1x #2
-// 6x #3
-// ---
+//     3x #1
+//     1x #2
+//     6x #3
 // Picking up 10x #3...
-// 3x #1
-// 1x #2
-// 10x #3
-// 6x #3
-// ---
+//     3x #1
+//     1x #2
+//     10x #3
+//     6x #3
 // Picking up 7x #3...
-// 3x #1
-// 1x #2
-// 10x #3
-// 10x #3
-// 3x #3
-// ---
+//     3x #1
+//     1x #2
+//     10x #3
+//     10x #3
+//     3x #3
 // Picking up 90x #3...
-// Left 33 on the floor.
-// 3x #1
-// 1x #2
-// 10x #3
-// 10x #3
-// 10x #3
-// 10x #3
-// 10x #3
-// 10x #3
-// 10x #3
-// 10x #3
-// ---
+//     3x #1
+//     1x #2
+//     10x #3
+//     10x #3
+//     10x #3
+//     10x #3
+//     10x #3
+//     10x #3
+//     10x #3
+//     10x #3
+//     Left 33 on the floor.
 // Picking up 33x #3...
-// Not enough space to pick up the item.
+//     Not enough space to pick up the item.
