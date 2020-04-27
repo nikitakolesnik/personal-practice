@@ -26,10 +26,6 @@ public:
 		_inv = std::vector<Item>(size, Item{ItemId::EMPTY, 0});
 	}
 
-	~Inventory()
-	{
-	}
-
 	void Print()
 	{
 		for (auto i : _inv)
