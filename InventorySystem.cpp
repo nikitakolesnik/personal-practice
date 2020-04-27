@@ -1,6 +1,4 @@
-// Simulates a video game inventory
-// Solves problems related to picking up stackable items
-// Edits the resource being consumed
+// I wrote this for a friend who said he had trouble solving problems related to stackable inventory items.
 
 #include <iostream>
 #include <vector>
@@ -97,12 +95,12 @@ int main()
 {
 	Inventory inv;
 
-	Item GroundItem0{ItemId::FOOD,  3};
-	Item GroundItem1{ItemId::GUN,   1};
-	Item GroundItem2{ItemId::AMMO,  6};
-	Item GroundItem3{ItemId::AMMO, 10};
-	Item GroundItem4{ItemId::AMMO,  7};
-	Item GroundItem5{ItemId::AMMO, 90};
+	Item GroundItem0{ ItemId::FOOD,  3 };
+	Item GroundItem1{ ItemId::GUN,   1 };
+	Item GroundItem2{ ItemId::AMMO,  6 };
+	Item GroundItem3{ ItemId::AMMO, 10 };
+	Item GroundItem4{ ItemId::AMMO,  7 };
+	Item GroundItem5{ ItemId::AMMO, 90 };
 
 	inv.PickUp(GroundItem0);
 	inv.PickUp(GroundItem1);
