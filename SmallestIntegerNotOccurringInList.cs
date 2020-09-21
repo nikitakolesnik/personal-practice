@@ -9,28 +9,29 @@ class Solution
 {
     public int solution(int[] A)
     {
-        Array.Sort(A);
+        Array.Sort(A); // Allows this to be potentially solved without visiting every member or using extra space
+        int last = A[A.Length - 1];
 
-        // If the highest number is negative or zero
-        int prev = A[A.Length - 1];
-        if (prev < 1)
+        // If the lowest number is greater than one
+        if (A[0] > 1)
             return 1;
 
-        int min = int.MaxValue;
-        // If the result is lower than the highest number
-        for (int i = A.Length - 2; i >= 0; i--)
-        {
-            if (prev - A[i] > 1) // If these two elements have a gap larger than 1
-            {
-                if (A[i] + 1 < min) // And if the lowest number in this gap is the new minimum
-                {
-                    min = A[i] + 1;
-                }
-            }
-            prev = A[i];
-        }
+        // If the highest number is negative or zero
+        if (last < 1)
+            return 1;
 
-        // If the list is consecutive (previous loop didn't update "min"), return highest+1
-        return (min != int.MaxValue) ? min : A[A.Length - 1] + 1;
+        // If the list is consecutive, return highest + 1. We can know this without traversing the list at all.
+        if (A[A.Length - 1] - A[0] == A.Length - 1)
+            return A[A.Length - 1] + 1;
+
+        // If the list is non-consecutive, and the result is within bounds of the lowest and highest members
+        int min = int.MaxValue;
+        for (int i = A.Length - 2; i >= 0; i--) // Going backwards, starting with the second-to-last number
+        {
+            if (last - A[i] > 1) // If these two elements have a gap larger than 1,
+                min = A[i] + 1;  // Then the new minimum is the lowest number in this gap
+            last = A[i];
+        }
+        return min; // this has to have been updated, since the consecutive case was handled above
     }
 }
