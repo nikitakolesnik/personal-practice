@@ -9,7 +9,7 @@ class Solution
 {
     public int solution(int[] A)
     {
-        Array.Sort(A); // Allows this to be potentially solved without visiting every member or using extra space
+        Array.Sort(A); // Allows this to be solved without visiting every member or using extra space
         int last = A[A.Length - 1];
 
         // If the lowest number is greater than one
