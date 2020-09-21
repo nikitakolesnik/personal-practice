@@ -1,3 +1,8 @@
+// Find the smallest integer that doesn't occur in a list
+// Given [1, 3, 6, 4, 1, 2], the function should return 5.
+// Given [1, 2, 3], the function should return 4.
+// Given [-1, -3], the function should return 1.
+
 using System;
 
 class Solution
