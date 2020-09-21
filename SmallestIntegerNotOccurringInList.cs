@@ -10,23 +10,27 @@ class Solution
     public int solution(int[] A)
     {
         Array.Sort(A);
-        
+
         // If the highest number is negative or zero
-        int prev = A[A.Length-1];
+        int prev = A[A.Length - 1];
         if (prev < 1)
             return 1;
 
+        int min = int.MaxValue;
         // If the result is lower than the highest number
-        for (int i = A.Length-2; i > 0; i--)
+        for (int i = A.Length - 2; i >= 0; i--)
         {
-            if ((prev - A[i]) > 1)
+            if (prev - A[i] > 1) // If these two elements have a gap larger than 1
             {
-                return prev - 1;
+                if (A[i] + 1 < min) // And if the lowest number in this gap is the new minimum
+                {
+                    min = A[i] + 1;
+                }
             }
             prev = A[i];
         }
 
         // If the list is consecutive (previous loop wasn't returned out of), return highest+1
-        return A[A.Length - 1] + 1;
+        return (min != int.MaxValue) ? min : A[A.Length - 1] + 1;
     }
 }
