@@ -16,7 +16,7 @@ class Solution
         if (prev < 1)
             return 1;
 
-        // If the result is lower than the highest
+        // If the result is lower than the highest number
         for (int i = A.Length-2; i > 0; i--)
         {
             if ((prev - A[i]) > 1)
