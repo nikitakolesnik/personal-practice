@@ -30,7 +30,7 @@ class Solution
             prev = A[i];
         }
 
-        // If the list is consecutive (previous loop wasn't returned out of), return highest+1
+        // If the list is consecutive (previous loop didn't update "min"), return highest+1
         return (min != int.MaxValue) ? min : A[A.Length - 1] + 1;
     }
 }
