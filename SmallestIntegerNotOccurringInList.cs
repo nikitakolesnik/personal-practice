@@ -12,8 +12,7 @@ class Solution
         Array.Sort(A); // Allows this to be solved without visiting every member or using extra space
         int last = A[A.Length - 1];
 
-        if (A[0] > 1    // If the highest number is negative or zero
-           || last < 1) // Or if the lowest number is greater than one
+        if (A[0] > 1 || last < 1) // Check the two cases in which we can immediately just return 1. Examples being {2,3,4} and {-4,-3,-2} respectively
             return 1;
 
         // If the list is consecutive, return highest + 1. We can know this without traversing the list at all.
